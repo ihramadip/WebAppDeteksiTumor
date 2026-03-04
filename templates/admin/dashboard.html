@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Dashboard Admin</h1>
+<div class="row">
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card glass-card">
+            <div class="card-header">Total Pengguna</div>
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ users|length if users else 0 }}</h5>
+                <p class="card-text">Jumlah total akun pengguna terdaftar.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card glass-card">
+            <div class="card-header">Pengguna Admin</div>
+            <div class="card-body">
+                <h5 class="card-title text-success">{{ users|selectattr('is_admin')|list|length if users else 0 }}</h5>
+                <p class="card-text">Jumlah akun dengan hak akses admin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card glass-card">
+            <div class="card-header">Aksi Cepat</div>
+            <div class="card-body">
+                <a href="{{ url_for('admin_add_user') }}" class="btn btn-primary btn-sm mb-2"><i class="fas fa-user-plus me-1"></i> Tambah Pengguna Baru</a>
+                <a href="{{ url_for('admin_users') }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-users me-1"></i> Lihat Semua Pengguna</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

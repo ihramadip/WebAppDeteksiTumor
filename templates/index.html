@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Platform Deteksi Tumor Otak Cerdas</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-brain me-2"></i>Deteksi Cerdas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#metode">Metode</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analisis">Mulai Deteksi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hubungi">Hubungi</a>
+                    </li>
+                    {% if current_user.is_authenticated and current_user.is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_dashboard') }}">Admin</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="display-3">Deteksi Dini Tumor Otak dengan AI</h1>
+            <p class="lead">Unggah gambar pindaian MRI Anda dan biarkan AI kami menganalisisnya untuk kemungkinan adanya tumor otak. Cepat, aman, dan informatif.</p>
+            <a href="#analisis" class="btn btn-primary btn-lg mt-3">Mulai Sekarang <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Metode Analisis Section -->
+        <section id="metode" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Bagaimana AI Kami Bekerja?</h2>
+                <div class="row g-4 justify-content-center">
+                    <!-- Card 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="method-card glass-card">
+                            <div class="icon"><i class="fas fa-image"></i></div>
+                            <h3>Input Gambar</h3>
+                            <p>Anda mengunggah gambar pindaian otak (MRI). Gambar ini adalah input utama untuk model AI kami.</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="method-card glass-card">
+                            <div class="icon"><i class="fas fa-layer-group"></i></div>
+                            <h3>Lapisan Konvolusi (CNN)</h3>
+                            <p>Model AI menggunakan filter untuk mendeteksi pola, tepi, dan tekstur pada gambar, sama seperti mata manusia.</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="method-card glass-card">
+                            <div class="icon"><i class="fas fa-cogs"></i></div>
+                            <h3>Proses Prediksi</h3>
+                            <p>Fitur-fitur yang terdeteksi kemudian dianalisis oleh jaringan saraf untuk membuat keputusan klasifikasi.</p>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="method-card glass-card">
+                            <div class="icon"><i class="fas fa-tags"></i></div>
+                            <h3>Hasil Klasifikasi</h3>
+                            <p>AI memberikan hasil prediksi, seperti "Glioma Tumor", "Meningioma Tumor", atau "Tidak Ada Tumor".</p>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="method-card glass-card">
+                            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3>Keamanan & Privasi</h3>
+                            <p>Gambar Anda diproses dengan aman dan tidak disimpan secara permanen di server kami setelah analisis selesai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Section -->
+        <section id="analisis" class="content-section">
+            <div class="container glass-card" id="analysis-container">
+                <h2 class="section-title">Mulai Deteksi</h2>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <div id="file-upload-area" class="file-upload-area">
+                            <div class="icon mb-3"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <p class="mb-0">Seret & lepas gambar pindaian MRI (.png, .jpg) atau <strong>klik untuk memilih</strong>.</p>
+                            <div id="spinner" class="spinner-border text-primary mt-3 d-none" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <input type="file" id="file-upload" accept="image/png, image/jpeg" class="d-none"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="content-section d-none">
+            <div class="container">
+                <h2 class="section-title">Hasil Deteksi</h2>
+                <div id="results-container">
+                    <!-- Hasil deteksi akan ditampilkan di sini oleh analysis-api.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Hubungi Section -->
+    <section id="hubungi" class="content-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="glass-card p-5 text-center">
+                        <p class="lead">Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi.</p>
+                        <hr class="my-4">
+                        <h5>Ihram Adi Pratama</h5>
+                        <p class="mb-1"><a href="mailto:ihrama13@gmail.com" class="text-decoration-none text-primary">ihrama13@gmail.com</a></p>
+                        <p><a href="tel:081293726469" class="text-decoration-none text-primary">081293726469</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-auto">
+        <div class="container">
+            <p>&copy; 2025 Platform Deteksi Cerdas. Didesain ulang oleh Gemini.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/analysis-api.js"></script>
+</body>
+</html>

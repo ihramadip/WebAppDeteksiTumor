@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #005c97; /* A deep, professional blue */
+    --secondary-color: #363795;
+    --accent-color: #00b4d8; /* A vibrant cyan for accents */
+    --background-light: #f8f9fa;
+    --background-dark: #e9ecef;
+    --text-color: #212529;
+    --text-color-light: #f8f9fa;
+    --white-color: #ffffff;
+    --border-radius: 15px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* --- Glassmorphism Card --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Navbar --- */
+.navbar {
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color) !important;
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 600;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-color) !important;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--text-color-light);
+    padding: 80px 20px;
+    text-align: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero p.lead {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 1rem auto 2rem auto;
+    font-weight: 300;
+}
+
+/* --- Main Content --- */
+.content-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border-radius: 5px;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- Method Cards --- */
+.method-card {
+    padding: 30px;
+    height: 100%;
+    text-align: center;
+}
+
+.method-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    display: inline-block;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    line-height: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.method-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* --- Upload & Analysis Section --- */
+#analysis-section {
+    background-color: var(--background-dark);
+}
+
+#analysis-container {
+    padding: 50px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.file-upload-area {
+    border: 3px dashed #ced4da;
+    border-radius: var(--border-radius);
+    padding: 50px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--white-color);
+}
+
+.file-upload-area:hover {
+    border-color: var(--accent-color);
+    background-color: #fdfdff;
+    transform: scale(1.02);
+}
+
+.file-upload-area .icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 92, 151, 0.4);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 92, 151, 0.5);
+}
+
+.btn-primary:disabled {
+    background: #adb5bd;
+    box-shadow: none;
+}
+
+/* --- Results Section --- */
+#results-container .card {
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    border: none;
+}
+
+#results-container .card-header {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--text-color-light);
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+.alert-light {
+    background-color: #e7f5ff;
+    border-left: 5px solid var(--accent-color);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--text-color);
+    color: var(--text-color-light);
+    padding: 40px 0;
+    text-align: center;
+}
+
+/* --- Login Page --- */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem;
+}
+
+.login-card .card-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* --- Admin Panel --- */
+.admin-sidebar {
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color-light);
+    min-height: 100vh;
+    padding-top: 20px;
+    width: 280px;
+}
+.admin-sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 12px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin: 5px 10px;
+}
+.admin-sidebar .nav-link.active,
+.admin-sidebar .nav-link:hover {
+    color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.admin-content {
+    padding: 30px;
+    background-color: #f4f7f6;
+}
+.admin-content .card {
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.admin-content .card-header {
+    background-color: var(--white-color);
+    border-bottom: 1px solid var(--background-dark);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
